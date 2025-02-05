@@ -1,0 +1,18 @@
+services:
+  api-beers:
+    container_name: api-beers
+    build: ./api
+    ports:
+      - 80:5000
+    depends_on:
+      - bd-beers
+  bd-beers:
+    container_name: bd-beers
+    build: ./sql
+    restart: always
+    ports:
+      - 3307:3307
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: beer
+    
